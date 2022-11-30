@@ -36,4 +36,7 @@ if __name__ == '__main__':
                 loss = train_batch(agent, optimizer, replay, params)
         if episode % 50 == 0:
             torch.save(agent, 'agent.dump')
+        
+        with open('log.txt', 'a') as f:
+            f.write(f'{episode} {episode_reward}\n') 
         print(episode, steps, loss, episode_reward, eps, agent(state.to(device)).detach().cpu().numpy())
